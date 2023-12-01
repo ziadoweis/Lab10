@@ -1,9 +1,14 @@
-#include "HashTable.h"
+#include <ctime>
+#include <chrono>
+#include <thread>
+#include <string>
 #include <iostream>
+#include <unordered_set>
+#include "HashTable.h"
+
+using namespace std;
+typedef chrono::high_resolution_clock Clock;
 
 int main() {
-
-    std::cout << "Hello World!" << std::endl;
-
     return 0;
 }
