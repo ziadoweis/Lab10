@@ -16,4 +16,3 @@ target_link_libraries(runTests ${GTEST_LIBRARIES} pthread applibrary)
 
 add_executable(runMain main.cpp)
 target_link_libraries(runMain applibrary)
-
