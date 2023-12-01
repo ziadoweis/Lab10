@@ -10,7 +10,7 @@ include_directories(.)
 
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(runTests tests.cpp)
-target_link_libraries(runTests ${GTEST_LIBRARIES} pthread applibrary) 
+target_link_libraries(runTests ${GTEST_LIBRARIES} pthread) 
 
 add_executable(runMain main.cpp)
-target_link_libraries(runMain applibrary)
+target_link_libraries(runMain)

@@ -1,9 +1,9 @@
 #pragma once
+
 #include "KVP.h"
 #include <iostream>
 #include <memory>
 #include <vector>
-
 
 template<class keyType, class valueType>
 class HashTable {
