@@ -11,11 +11,11 @@ class HashTable {
 public:
     HashTable(int input_size);
 
-    int Hash(keyType& key);
+    int Hash(keyType& key, bool badHash);
 
-    bool AddItem(keyType key, valueType val);
+    bool AddEntry(keyType key, valueType val, bool badHash);
 
-    std::shared_ptr<KVP<keyType, valueType>> GetItem(keyType& key);
+    std::shared_ptr<KVP<keyType, valueType>> GetEntry(keyType& key, bool badHash);
 
     int Contains();
     
