@@ -35,33 +35,35 @@ bool HashTable<keyType, valueType>::AddEntry(keyType key, valueType val, bool ba
     std::shared_ptr<KVP<keyType, valueType>> entry = GetEntry(key, false);
     if (entry != nullptr) { return false; }
 
-    if (Contains() == m_hash_table.size()) { return false; }
+    if (this->Contains() == m_hash_table.size()) { return false; }
 
     int i = Hash(key, badHash);
 
     if (m_hash_table[i] == nullptr) {
         m_hash_table[i] = std::make_shared<KVP<keyType, valueType>>(key, val);
-        m_count++;
+        ++m_count;
         return true;
     }
     else {
-        //int initial_i = i;
+        int initial_i = i;
         int moves = 0;
 
         while ((m_hash_table[i] != nullptr) && (moves < m_hash_table.size())) {
         
+            ++i;
+            ++moves;
+
             if (i == m_hash_table.size()) { i = 0; }
 
-            i++;
-            moves++;
         }
 
         if (m_hash_table[i] == nullptr) {
             m_hash_table[i] = std::make_shared<KVP<keyType, valueType>>(key, val);
-            m_count++;
+            ++m_count;
             return true;
         }
     }
+    return false;
 }
 
 // Get Item: Retrieves the value associated with the given key
