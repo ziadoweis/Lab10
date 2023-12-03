@@ -7,13 +7,13 @@ using namespace std;
 
 using Clock = chrono::high_resolution_clock;
 
-vector<int> NumGen(int Items){
+vector<int> NumGen(int Items){ // Creates a vector of numbers that keeps track to numbers to have a completetly uniqie set of vector to be returned to be used for the tasks
     unordered_set<int> UniqueItems;
     vector<int> ItemGen;
     
     while (ItemGen.size() < Items){
         int value = rand() % (2 * Items);
-
+    // Compares the values to see if there is only one copy in the unique vector
         if (UniqueItems.find(value) == UniqueItems.end()){
             UniqueItems.insert(value);
             ItemGen.push_back(value);
@@ -226,12 +226,13 @@ int main() {
     cout << "Hash Time for Adding 5000 Random Items at 500%: " << TestHashTime << " microseconds\n" << endl;
 
     cout << "Task 5: \n";
+    // Clears the hash table from Task 3 to be re-used
     HashTable500.ClearTable();
     HashTable1000.ClearTable();
     HashTable2000.ClearTable();
     HashTable5000.ClearTable();
-    
-    //Adding 500 Items with bad hash
+
+    //Adding 500 Items with bad hash at 150% max items
     t1 = Clock::now();
     for(int i = 0; i < 500; i++)
     {

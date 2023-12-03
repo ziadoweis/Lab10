@@ -28,18 +28,18 @@ int HashTable<keyType, valueType>::Hash(keyType& key, bool BadHash) {
     }
 }
 
-//Adds an item to the table
+//Adds an item to the hash table
 template<class keyType, class valueType>
 bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val, bool BadHash) {
     int AddIndex = Hash(key, BadHash);
     if (GetItem(key, BadHash) != nullptr){
         return false; 
     }
-
+    // Checks if the table is full
     if (m_count == m_hash_table.size()){
         return false; 
     }
-
+    // Checks if the given index is empty space so that the item can be inserted
     if (m_hash_table[AddIndex] == nullptr){
         m_hash_table[AddIndex] = std::make_shared<KVP<keyType, valueType>>(key, val);
         m_count++;
@@ -47,6 +47,7 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val, bool Bad
     }
     else{
         IncrementCount = 0;
+        // Goes through the hash table until an empty spot is found if the inital spot is occupied
         while ((m_hash_table[AddIndex] != nullptr) && (IncrementCount < m_hash_table.size())) {   
             if (++AddIndex == m_hash_table.size()){
                 AddIndex = 0; 
@@ -75,7 +76,8 @@ std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(
     int OriginalIndex = Index;
 
     while (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() != key) {
-        Index = (Index + 1) % max_size; // Linear probing
+        Index = (Index + 1) % max_size;
+        // Checks if the key exists in the hash
         if(Index == OriginalIndex){
             std::cout << "No key found\n";
             break;
@@ -99,6 +101,7 @@ int HashTable<keyType, valueType>::Contains(){
 //Clears the table
 template<class keyType, class valueType>
 void HashTable<keyType, valueType>::ClearTable() {
+    // deallocates the sahred pointer count and then clears the contents of the hash table
     for (auto& Item : m_hash_table) {
         Item.reset(); 
     }

@@ -31,7 +31,7 @@ public:
 
 private:
     int max_size;
-    int m_count;
+    int m_count; // Keep track of the size of hash table
     int IncrementCount;
     
     std::vector<std::shared_ptr<KVP<keyType, valueType>>> m_hash_table;
