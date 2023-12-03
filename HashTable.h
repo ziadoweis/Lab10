@@ -11,21 +11,22 @@ class HashTable {
 public:
     HashTable(int input_size);
 
-    int Hash(keyType& key, bool badHash);
+    int Hash(keyType& key, bool BadHash);
 
-    bool AddEntry(keyType key, valueType val, bool badHash);
+    bool AddItem(keyType key, valueType val);
 
-    std::shared_ptr<KVP<keyType, valueType>> GetEntry(keyType& key, bool badHash);
+    std::shared_ptr<KVP<keyType, valueType>> GetItem(keyType& key);
 
     int Contains();
     
     virtual ~HashTable();
     
-    void clear();
+    void ClearTable();
 
 private:
     int max_size;
     int m_count;
+    int IncrementCount = 0;
     
     std::vector<std::shared_ptr<KVP<keyType, valueType>>> m_hash_table;
 };
