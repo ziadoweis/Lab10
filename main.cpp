@@ -159,7 +159,7 @@ int main() {
     }
     t2 = Clock::now();
     TestHashTime = chrono::duration_cast<chrono::microseconds>(t2 - t1).count();
-    cout << "Hash Time for Adding 1000 Random Items at 500: " << TestHashTime << " microseconds\n" << endl;
+    cout << "Hash Time for Adding 1000 Random Items at 500%: " << TestHashTime << " microseconds\n" << endl;
 
     // Adding 2000 Items at 100% of max numbers
     t1 = Clock::now();
