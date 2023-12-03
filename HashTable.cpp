@@ -2,7 +2,7 @@
 #include <memory>
 #include "HashTable.h"
 
-// Constructor: Initializes the hash table with given size
+//Constructor that takes in a table size
 template <class keyType, class valueType>
 HashTable<keyType, valueType>::HashTable(int input_size){
     max_size = input_size;
@@ -11,25 +11,24 @@ HashTable<keyType, valueType>::HashTable(int input_size){
     m_hash_table = std::vector<std::shared_ptr<KVP<keyType, valueType>>>(input_size, nullptr);
 }
 
-// Destructor: Clears the hash table
+//Destructor using vector clear function
 template<class keyType, class valueType>
 HashTable<keyType, valueType>::~HashTable(){
-    //dtor
     m_hash_table.clear();
 }
 
-// Hash function: Computes the hash value based on the key
+//Hashing function using a key
 template <class keyType, class valueType>
 int HashTable<keyType, valueType>::Hash(keyType& key, bool BadHash) {
     if(!BadHash){
-    return static_cast<int>(key) % max_size;
+        return static_cast<int>(key) % max_size;
     }
     else{
         return 0;
     }
 }
 
-// Add Item: Inserts a new key-value pair into the hash table
+//Adds an item to the table
 template<class keyType, class valueType>
 bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val, bool BadHash) {
     int AddIndex = Hash(key, BadHash);
@@ -69,8 +68,7 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val, bool Bad
         }
     }
 }
-
-// Get Item: Retrieves the value associated with the given key
+//Gets an item from the table using a key
 template<class keyType, class valueType>
 std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(keyType& key, bool BadHash) {
     int Index = Hash(key, BadHash);
@@ -92,19 +90,18 @@ std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(
     }   
 }
 
-// Contains: Counts the number of items in the hash table
+//Checks the occupied size of the table
 template<class keyType, class valueType>
 int HashTable<keyType, valueType>::Contains(){
     return m_count;
 }
 
+//Clears the table
 template<class keyType, class valueType>
 void HashTable<keyType, valueType>::ClearTable() {
-    // Sets shared pointer count to null
     for (auto& Item : m_hash_table) {
         Item.reset(); 
     }
-    // Clears the values in the hashtable
     m_hash_table.clear();
     m_count = 0;
 }
