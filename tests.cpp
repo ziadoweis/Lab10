@@ -39,8 +39,8 @@ TEST(HashTableTests, AddEntry1) {
     hashTable.AddEntry(secondKey, "456", false);
 
     ASSERT_EQ(hashTable.Contains(), 2);
-    ASSERT_EQ(hashTable.GetEntry(firstKey, false)->getValue(), "123");
-    ASSERT_EQ(hashTable.GetEntry(secondKey, false)->getValue(), "456"); 
+    EXPECT_EQ(hashTable.GetEntry(firstKey, false)->getValue(), "123");
+    EXPECT_EQ(hashTable.GetEntry(secondKey, false)->getValue(), "456"); 
 }
 
 
