@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "HashTable.h"
 
-TEST(HashTableTests, Hash1) {
+TEST(HashTableTest1, Hash1) {
     HashTable<int, std::string> HashTable(10);
     
     int firstKey = 34;
@@ -13,7 +13,7 @@ TEST(HashTableTests, Hash1) {
     ASSERT_NE(val1, val2);    
 }
 
-TEST(HashTableTests, Hash2) {
+TEST(HashTableTest2, Hash2) {
     HashTable<int, std::string> HashTable(100);
     
     int firstKey = 254;
