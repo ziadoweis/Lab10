@@ -13,9 +13,9 @@ public:
 
     int Hash(keyType& key, bool BadHash);
 
-    bool AddItem(keyType key, valueType val);
+    bool AddItem(keyType key, valueType val, bool BadHash);
 
-    std::shared_ptr<KVP<keyType, valueType>> GetItem(keyType& key);
+    std::shared_ptr<KVP<keyType, valueType>> GetItem(keyType& key, bool BadHash);
 
     int Contains();
     
@@ -26,7 +26,7 @@ public:
 private:
     int max_size;
     int m_count;
-    int IncrementCount = 0;
+    int IncrementCount;
     
     std::vector<std::shared_ptr<KVP<keyType, valueType>>> m_hash_table;
 };

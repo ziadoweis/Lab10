@@ -1,11 +1,7 @@
 #include <gtest/gtest.h>
 #include "HashTable.h"
 
-<<<<<<< HEAD
-TEST(HashTableTest1, Hash1) {
-=======
 TEST(Hash1, InsertingValuesToKeys) {
->>>>>>> 4b1696ae630d4806bfa6c30851b766be3b507769
     HashTable<int, std::string> HashTable(10);
     
     int firstKey = 34;
@@ -19,13 +15,8 @@ TEST(Hash1, InsertingValuesToKeys) {
     ASSERT_NE(val1, val2);    
 }
 
-<<<<<<< HEAD
-TEST(HashTableTest2, Hash2) {
-    HashTable<int, std::string> HashTable(100);
-=======
 TEST(Hash2, VerifyingTheModulusValue) {
     HashTable<int, std::string> HashTable(50);
->>>>>>> 4b1696ae630d4806bfa6c30851b766be3b507769
     
     int firstKey = 25;
     int secondKey = 97;
@@ -54,8 +45,8 @@ TEST(AddItem1, AddingItemsToKeys) {
     int firstKey = 123;
     int secondKey = 456;
 
-    ASSERT_TRUE(HashTable.AddItem(firstKey, "123"));
-    ASSERT_TRUE(HashTable.AddItem(secondKey, "456"));
+    ASSERT_TRUE(HashTable.AddItem(firstKey, "123", false));
+    ASSERT_TRUE(HashTable.AddItem(secondKey, "456", false));
 
 }
 
@@ -68,15 +59,15 @@ TEST(AddItem2, CheckingIfTheHashTableIsFull) {
     int fourthKey = 234;
     int fifthKey = 567;
 
-    HashTable.AddItem(firstKey, "123");
-    HashTable.AddItem(secondKey, "456");
-    HashTable.AddItem(thirdKey, "987");
-    HashTable.AddItem(fourthKey, "234");
-    HashTable.AddItem(fifthKey, "567");
+    HashTable.AddItem(firstKey, "123", false);
+    HashTable.AddItem(secondKey, "456", false);
+    HashTable.AddItem(thirdKey, "987", false);
+    HashTable.AddItem(fourthKey, "234", false);
+    HashTable.AddItem(fifthKey, "567", false);
 
     int sixthKey = 10;
 
-    ASSERT_FALSE(HashTable.AddItem(sixthKey, "10"));
+    ASSERT_FALSE(HashTable.AddItem(sixthKey, "10", false));
 }
 
 TEST(GetItem1, GettingItemsFromKeys) {
@@ -85,8 +76,8 @@ TEST(GetItem1, GettingItemsFromKeys) {
     int firstKey = 123;
     int secondKey = 456;
 
-    HashTable.AddItem(firstKey, "123");
-    HashTable.AddItem(secondKey, "456");
+    HashTable.AddItem(firstKey, "123", false);
+    HashTable.AddItem(secondKey, "456", false);
 
     ASSERT_EQ(HashTable.GetItem(firstKey)->getValue(), "123");
     ASSERT_EQ(HashTable.GetItem(secondKey)->getValue(), "456"); 
@@ -98,7 +89,7 @@ TEST(GetItem2, GettingItemsThatDontExist) {
     int firstKey = 45;
     int secondKey = 67;
 
-    HashTable.AddItem(firstKey, "45");
+    HashTable.AddItem(firstKey, "45", false);
 
     ASSERT_NE(HashTable.GetItem(firstKey)->getValue(), "67");
 }
@@ -112,11 +103,11 @@ TEST(Contains1, HowManyItemsCorrect) {
     int fourthKey = 234;
     int fifthKey = 567;
 
-    HashTable.AddItem(firstKey, "123");
-    HashTable.AddItem(secondKey, "456");
-    HashTable.AddItem(thirdKey, "987");
-    HashTable.AddItem(fourthKey, "234");
-    HashTable.AddItem(fifthKey, "567");
+    HashTable.AddItem(firstKey, "123", false);
+    HashTable.AddItem(secondKey, "456", false);
+    HashTable.AddItem(thirdKey, "987", false);
+    HashTable.AddItem(fourthKey, "234", false);
+    HashTable.AddItem(fifthKey, "567", false);
 
     ASSERT_EQ(HashTable.Contains(), 5);
 }
@@ -131,14 +122,14 @@ TEST(Contains2, HowManyItemsWrong) {
     int fourthKey = 234;
     int fifthKey = 567;
 
-    HashTable.AddItem(firstKey, "123");
-    HashTable.AddItem(secondKey, "456");
-    HashTable.AddItem(thirdKey, "987");
-    HashTable.AddItem(fourthKey, "234");
+    HashTable.AddItem(firstKey, "123", false);
+    HashTable.AddItem(secondKey, "456", false);
+    HashTable.AddItem(thirdKey, "987", false);
+    HashTable.AddItem(fourthKey, "234", false);
 
     ASSERT_NE(HashTable.Contains(), 5);
 
-    HashTable.AddItem(fifthKey, "567");
+    HashTable.AddItem(fifthKey, "567", false);
 
     ASSERT_EQ(HashTable.Contains(), 5);
 }
@@ -152,10 +143,10 @@ TEST(ClearTable1, ClearingTableFull) {
     int fourthKey = 234;
     int fifthKey = 567;
 
-    HashTable.AddItem(firstKey, "123");
-    HashTable.AddItem(secondKey, "456");
-    HashTable.AddItem(thirdKey, "987");
-    HashTable.AddItem(fourthKey, "234");
+    HashTable.AddItem(firstKey, "123", false);
+    HashTable.AddItem(secondKey, "456", false);
+    HashTable.AddItem(thirdKey, "987", false);
+    HashTable.AddItem(fourthKey, "234", false);
 
     ASSERT_EQ(HashTable.Contains(), 4);
 
