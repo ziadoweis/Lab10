@@ -2,25 +2,25 @@
 #include "HashTable.h"
 
 TEST(HashTableTests, Hash1) {
-    HashTable<int, std::string> hashTable(10);
+    HashTable<int, std::string> HashTable(10);
     
     int firstKey = 34;
     int secondKey = 43;
 
-    int val1 = hashTable.Hash(firstKey, false);
-    int val2 = hashTable.Hash(secondKey, false);
+    int val1 = HashTable.Hash(firstKey, false);
+    int val2 = HashTable.Hash(secondKey, false);
 
     ASSERT_NE(val1, val2);    
 }
 
 TEST(HashTableTests, Hash2) {
-    HashTable<int, std::string> hashTable(100);
+    HashTable<int, std::string> HashTable(100);
     
     int firstKey = 254;
     int secondKey = 976;
 
-    int val1 = hashTable.Hash(firstKey, false);
-    int val2 = hashTable.Hash(secondKey, false);
+    int val1 = HashTable.Hash(firstKey, false);
+    int val2 = HashTable.Hash(secondKey, false);
 
     int expectedVal1 = firstKey % 100;
     int expectedVal2 = secondKey % 100;
@@ -29,18 +29,18 @@ TEST(HashTableTests, Hash2) {
     ASSERT_EQ(val2, expectedVal2);   
 }
 
-TEST(HashTableTests, AddEntry1) {
-    HashTable<int, std::string> hashTable(5);
+TEST(HashTableTests, AddItem1) {
+    HashTable<int, std::string> HashTable(5);
     
     int firstKey = 123;
     int secondKey = 456;
 
-    hashTable.AddEntry(firstKey, "123", false);
-    hashTable.AddEntry(secondKey, "456", false);
+    HashTable.AddItem(firstKey, "123");
+    HashTable.AddItem(secondKey, "456");
 
-    ASSERT_EQ(hashTable.Contains(), 2);
-    EXPECT_EQ(hashTable.GetEntry(firstKey, false)->getValue(), "123");
-    EXPECT_EQ(hashTable.GetEntry(secondKey, false)->getValue(), "456"); 
+    ASSERT_EQ(HashTable.Contains(), 2);
+    EXPECT_EQ(HashTable.GetItem(firstKey)->getValue(), "123");
+    EXPECT_EQ(HashTable.GetItem(secondKey)->getValue(), "456"); 
 }
 
 
