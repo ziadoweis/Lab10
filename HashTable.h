@@ -11,7 +11,7 @@ class HashTable {
 public:
     HashTable(int input_size);
 
-    int Hash(keyType& key, bool BadHash);
+    int Hash(keyType& key);
 
     bool AddItem(keyType key, valueType val);
 
