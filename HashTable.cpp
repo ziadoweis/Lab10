@@ -32,7 +32,7 @@ int HashTable<keyType, valueType>::Hash(keyType& key, bool BadHash) {
 // Add Item: Inserts a new key-value pair into the hash table
 template<class keyType, class valueType>
 bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
-    int Index = Hash(key, false);
+    int AddIndex = Hash(key, false);
     if (GetItem(key) != nullptr){
         return false; 
     }
@@ -41,23 +41,23 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
          return false; 
     }
 
-    if (m_hash_table[Index] == nullptr){
-        m_hash_table[Index] = std::make_shared<KVP<keyType, valueType>>(key, val);
+    if (m_hash_table[AddIndex] == nullptr){
+        m_hash_table[AddIndex] = std::make_shared<KVP<keyType, valueType>>(key, val);
         m_count++;
         return true;
     }
     else{
-        while ((m_hash_table[Index] != nullptr) && (IncrementCount < m_hash_table.size())) {
-            Index++;
+        while ((m_hash_table[AddIndex] != nullptr) && (IncrementCount < m_hash_table.size())) {
+            AddIndex++;
             IncrementCount++;
 
-            if (Index == m_hash_table.size()){
-                Index = 0; 
+            if (AddIndex == m_hash_table.size()){
+                AddIndex = 0; 
             }
         }
 
-        if (m_hash_table[Index] == nullptr) {
-            m_hash_table[Index] = std::make_shared<KVP<keyType, valueType>>(key, val);
+        if (m_hash_table[AddIndex] == nullptr) {
+            m_hash_table[AddIndex] = std::make_shared<KVP<keyType, valueType>>(key, val);
             m_count++;
             return true;
         }
@@ -69,17 +69,18 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
 // Get Item: Retrieves the value associated with the given key
 template<class keyType, class valueType>
 std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(keyType& key) {
-    int Index, OriginalIndex = Hash(key, false);
+    int Index = Hash(key, false);
+    int OriginalIndex = Index;
 
-    while (m_hash_table[Index]->getKey() != key && m_hash_table[Index] != nullptr) {
+    while (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() != key ) {
         Index = (Index + 1) % max_size; // Linear probing
-        if(Index = OriginalIndex){
+        if(Index == OriginalIndex){
             std::cout << "No key found\n";
             break;
         }
     }  
 
-    if (m_hash_table[Index]->getKey() == key && m_hash_table[Index] != nullptr) {
+    if (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() == key) {
             return m_hash_table[Index];
     }
     else{

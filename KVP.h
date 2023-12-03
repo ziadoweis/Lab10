@@ -3,14 +3,13 @@
 template<class keyType, class valueType>
 class KVP {
 public:
-    KVP(keyType k, valueType val){
+    KVP(keyType key, valueType val){
         this->key = key;
         this->value = val;
     }
 
     valueType getValue(){
         return this->value;
-
     };
     keyType getKey(){
         return this->key;
