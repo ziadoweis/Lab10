@@ -32,7 +32,7 @@ int HashTable<keyType, valueType>::Hash(keyType& key, bool BadHash) {
 // Add Item: Inserts a new key-value pair into the hash table
 template<class keyType, class valueType>
 bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
-    int Index = Hash(key);
+    int Index = Hash(key, false);
     if (GetItem(key) != nullptr){
         return false; 
     }
@@ -69,7 +69,7 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
 // Get Item: Retrieves the value associated with the given key
 template<class keyType, class valueType>
 std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(keyType& key) {
-    int Index, OriginalIndex = Hash(key);
+    int Index, OriginalIndex = Hash(key, false);
 
     while (m_hash_table[Index]->getKey() != key && m_hash_table[Index] != nullptr) {
         Index = (Index + 1) % max_size; // Linear probing
