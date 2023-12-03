@@ -79,8 +79,8 @@ TEST(GetItem1, GettingItemsFromKeys) {
     HashTable.AddItem(firstKey, "123", false);
     HashTable.AddItem(secondKey, "456", false);
 
-    ASSERT_EQ(HashTable.GetItem(firstKey)->getValue(), "123");
-    ASSERT_EQ(HashTable.GetItem(secondKey)->getValue(), "456"); 
+    ASSERT_EQ(HashTable.GetItem(firstKey, false)->getValue(), "123");
+    ASSERT_EQ(HashTable.GetItem(secondKey, false)->getValue(), "456"); 
 }
 
 TEST(GetItem2, GettingItemsThatDontExist) {
@@ -91,7 +91,7 @@ TEST(GetItem2, GettingItemsThatDontExist) {
 
     HashTable.AddItem(firstKey, "45", false);
 
-    ASSERT_NE(HashTable.GetItem(firstKey)->getValue(), "67");
+    ASSERT_NE(HashTable.GetItem(firstKey, false)->getValue(), "67");
 }
 
 TEST(Contains1, HowManyItemsCorrect) {

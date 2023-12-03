@@ -230,18 +230,20 @@ int main() {
     HashTable1000.ClearTable();
     HashTable2000.ClearTable();
     HashTable5000.ClearTable();
-
+    
+    //Adding 500 Items with bad hash
     t1 = Clock::now();
     for(int i = 0; i < 500; i++)
     {
         HashTable500.AddItem(TestValuesTask3[i], to_string(TestValuesTask3[i]), true);
     }
 
+    
     t2 = Clock::now();
     TestHashTime = chrono::duration_cast<chrono::microseconds>(t2 - t1).count();
-    cout << "Hash runtime with 500 values: " << TestHashTime << "us" << endl;
+    cout << "Hash Time for Adding 500 Random Items with a Bad Hash Function: " << TestHashTime << " microseconds" << endl;
 
-    // Insert 1000 Values
+    // Adding 1000 Items with bad hash
     t1 = Clock::now();
     for(int i = 0; i < 1000; i++)
     {
@@ -250,27 +252,29 @@ int main() {
 
     t2 = Clock::now();
     TestHashTime = chrono::duration_cast<chrono::microseconds>(t2 - t1).count();
-    cout << "Hash runtime with 1000 values: " << TestHashTime << "us" << endl;
+    cout << "Hash Time for Adding 1000 Random Items with a Bad Hash Function: " << TestHashTime << " microseconds" << endl;
 
-    // Insert 2000 Values
+    // Adding 2000 Items with bad hash
     t1 = Clock::now();
     for(int i = 0; i < 2000; i++)
     {
         HashTable2000.AddItem(TestValuesTask3[i], to_string(TestValuesTask3[i]), true);
     }
+
     t2 = Clock::now();
     TestHashTime = chrono::duration_cast<chrono::microseconds>(t2 - t1).count();
-    cout << "Hash runtime with 2000 values: " << TestHashTime << "us" << endl;
+    cout << "Hash Time for Adding 2000 Random Items with a Bad Hash Function: " << TestHashTime << " microseconds" << endl;
 
-    // Insert 5000 Values
+    // Adding 5000 Items with bad hash
     t1 = Clock::now();
     for(int i = 0; i < 5000; i++)
     {
         HashTable5000.AddItem(TestValuesTask3[i], to_string(TestValuesTask3[i]), true);
     }
+
     t2 = Clock::now();
     TestHashTime = chrono::duration_cast<chrono::microseconds>(t2 - t1).count();
-    cout << "Hash runtime with 5000 values: " << TestHashTime << "ms" << endl;
+    cout << "Hash Time for Adding 5000 Random Items with a Bad Hash Function: " << TestHashTime << " microseconds" << endl;
 
     return 0;
 }
