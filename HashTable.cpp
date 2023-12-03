@@ -38,7 +38,7 @@ bool HashTable<keyType, valueType>::AddItem(keyType key, valueType val) {
     }
 
     if (m_count == m_hash_table.size()){
-         return false; 
+        return false; 
     }
 
     if (m_hash_table[AddIndex] == nullptr){
@@ -72,7 +72,7 @@ std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(
     int Index = Hash(key, false);
     int OriginalIndex = Index;
 
-    while (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() != key ) {
+    while (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() != key) {
         Index = (Index + 1) % max_size; // Linear probing
         if(Index == OriginalIndex){
             std::cout << "No key found\n";
@@ -81,7 +81,7 @@ std::shared_ptr<KVP<keyType, valueType>> HashTable<keyType, valueType>::GetItem(
     }  
 
     if (m_hash_table[Index] != nullptr && m_hash_table[Index]->getKey() == key) {
-            return m_hash_table[Index];
+        return m_hash_table[Index];
     }
     else{
         return nullptr;
